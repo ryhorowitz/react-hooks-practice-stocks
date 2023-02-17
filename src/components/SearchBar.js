@@ -1,10 +1,15 @@
 import React from "react";
 
-function SearchBar({ sortStocks }) {
+function SearchBar({ sortBy, setSortBy, setFilterBy }) {
 
   function handleRadioClick(e) {
-    sortStocks(e.target.value)
+    setSortBy(e.target.value)
   }
+
+  function handleSelection(e) {
+    setFilterBy(e.target.value)
+  }
+
   return (
     <div>
       <strong>Sort by:</strong>
@@ -13,7 +18,7 @@ function SearchBar({ sortStocks }) {
           type="radio"
           value="Alphabetically"
           name="sort"
-          checked={null}
+          checked={sortBy === 'Alphabetically'}
           onChange={handleRadioClick}
         />
         Alphabetically
@@ -23,7 +28,7 @@ function SearchBar({ sortStocks }) {
           type="radio"
           value="Price"
           name="sort"
-          checked={null}
+          checked={sortBy === 'Price'}
           onChange={handleRadioClick}
         />
         Price
@@ -31,7 +36,7 @@ function SearchBar({ sortStocks }) {
       <br />
       <label>
         <strong>Filter:</strong>
-        <select onChange={null}>
+        <select onChange={handleSelection}>
           <option value="Tech">Tech</option>
           <option value="Sportswear">Sportswear</option>
           <option value="Finance">Finance</option>
